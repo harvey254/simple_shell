@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * interactive - returns true if shell is interactive mode
+ * interactive - checks if shell is interactive mode
  * @info: struct address
  *
  * Return: 1 if interactive mode, 0 otherwise
@@ -14,7 +14,7 @@ int interactive(info_t *info)
 /**
  * is_delim - checks if character is a delimeter
  * @c: the char to check
- * @delim: the delimeter string
+ * @delim: delimiter string value
  * Return: 1 if true, 0 if false
  */
 int is_delim(char c, char *delim)
@@ -47,8 +47,8 @@ int _isalpha(int c)
 
 int _atoi(char *s)
 {
-	int i, sign = 1, flag = 0, output;
-	unsigned int result = 0;
+	int i, sign = 1, flag = 0, o;
+	unsigned int res = 0;
 
 	for (i = 0;  s[i] != '\0' && flag != 2; i++)
 	{
@@ -58,17 +58,17 @@ int _atoi(char *s)
 		if (s[i] >= '0' && s[i] <= '9')
 		{
 			flag = 1;
-			result *= 10;
-			result += (s[i] - '0');
+			res *= 10;
+			res += (s[i] - '0');
 		}
 		else if (flag == 1)
 			flag = 2;
 	}
 
 	if (sign == -1)
-		output = -result;
+		o = -res;
 	else
-		output = result;
+		o = res;
 
-	return (output);
+	return (o);
 }
