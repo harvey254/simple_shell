@@ -32,10 +32,6 @@ char *_getenv(const char *name, char **env);
 char *check_command_in_path(const char *command, const char *path);
 char *create_full_path(const char *dir, const char *command);
 
-
-int _strcmp(char *s1, char *s2);
-int _strlen(char *s);
-int _strncmp(char *s1, char *s2, int n);
 char *find_path(void);
 
 #endif
