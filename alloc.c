@@ -26,7 +26,7 @@ void ffree(char **s)
 
 	if (!s)
 		return;
-	while(*s)
+	while (*s)
 		free(*s++);
 	free(k);
 }
