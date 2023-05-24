@@ -11,7 +11,7 @@ void printenv(void)
 
 	while (env[i])
 	{
-		write(STDOUT_FILENO,(const void *)env[i], strlen(env[i]));
+		write(STDOUT_FILENO, (const void *)env[i], strlen(env[i]));
 		write(STDOUT_FILENO, "\n", 1);
 		i++;
 	}

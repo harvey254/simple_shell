@@ -1,10 +1,10 @@
 #include "main.h"
 /**
- * create_full_path -> 
- * @dir
- * @command:
+ * create_full_path -> prints full dir path
+ * @dir: directory
+ * @command: command
  *
- * Return: 
+ * Return: full dir path
  */
 char *create_full_path(const char *dir, const char *command)
 {

@@ -1,17 +1,18 @@
 #include "main.h"
 /**
- * _getenv -> 
- * @name:
- * @env:
+ * _getenv -> get environment variable
+ * @name: string value
+ * @env: environment variable
  *
- * Return:
+ * Return: environment variable
  */
 char *_getenv(const char *name, char **env)
 {
 	int i;
 	size_t name_len;
+
 	if (name == NULL || env == NULL)
-		return NULL;
+		return (NULL);
 	name_len = strlen(name);
 
 	for (i = 0; env[i] != NULL; i++)

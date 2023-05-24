@@ -1,15 +1,17 @@
 #include "main.h"
-/**check_command_in_path ->
- * @commmand
- * @path
+/**
+ * check_command_in_path ->
+ * @commmand: command
+ * @path: path vaiable
  *
  * Return: path
  */
 char *check_command_in_path(const char *command, const char *path)
 {
 	char *path_copy, *dir, *full_path;
+
 	if (command == NULL || path == NULL)
-		return NULL;
+		return (NULL);
 
 	path_copy = strdup(path);
 
@@ -33,5 +35,5 @@ char *check_command_in_path(const char *command, const char *path)
 	}
 	free(path_copy);
 
-	return NULL;
+	return (NULL);
 }

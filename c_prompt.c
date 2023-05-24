@@ -1,7 +1,7 @@
 #include "main.h"
 #include <sys/wait.h>
 /**
- * c_prompt - executes commands 
+ * c_prompt - executes commands
  * @av: pointer to string arrray
  * @env: pointer to environment variable
  *
@@ -70,7 +70,7 @@ void c_prompt(char **av, char **env)
 					printf("%s\n", *env_p);
 					env_p++;
 				}
-			}	
+			}
 
 			child_pid = fork();
 
@@ -82,7 +82,7 @@ void c_prompt(char **av, char **env)
 
 			if (child_pid == 0)
 			{
-				if (execve(argv[0],argv, env) == -1)
+				if (execve(argv[0], argv, env) == -1)
 				{
 					printf("%s: No such file or directory\n", av[0]);
 					free(input);
@@ -90,14 +90,14 @@ void c_prompt(char **av, char **env)
 				}
 				if (path != NULL)
 				{
-					path_command = check_command_in_path(command,path);
+					path_command = check_command_in_path(command, path);
 
 					if (path_command != NULL)
 					{
 						execve(path_command, argv, env);
 					}
 					execvp(command, argv);
-					fprintf(stderr, "%s: error",command);
+					fprintf(stderr, "%s: error", command);
 					free(input);
 					exit(EXIT_FAILURE);
 				}
