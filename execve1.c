@@ -1,4 +1,4 @@
-#include "shell."
+#include "shell.h"
 /**
  * execute_command - executes commands
  * @command: command
@@ -32,7 +32,7 @@ void execute_cmd(char *command)
 	}
 	else
 	{
-		snprintf(cmd_path, sizeof(cmd_path), "/%s", args[0]);
+		sprintf(cmd_path,"/%s", args[0]);
 	}
 	pid = fork();
 

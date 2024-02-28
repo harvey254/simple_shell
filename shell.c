@@ -2,7 +2,7 @@
 /**
  * main - entry point
  *
- * Return: Sucess(0), -1 oterwise
+ * Return: Sucess(0), (-1) oterwise
  */
 int main(void)
 {
@@ -31,7 +31,7 @@ int main(void)
 			if (command[strlen(command) - 1] == '\n')
 			{
 				command[strlen(command) - 1] = '\0';
-				execute_cmd1(command);
+				execute_command(command);
 			}
 		}
 	}

@@ -12,6 +12,9 @@
 #define MAX_PATH_LENGTH 1024
 #define MAX_COMMAND_LENGTH 256
 
+
+int command_path(const char *command, char *path, size_t buffer_size);
+
 extern char **environ;
 void myshell_prompt(void);
 int parse_cmd(char *cmd, char *args[]);
@@ -20,14 +23,11 @@ void print_env(void);
 int check_env(char *cmd);
 char* custom_getline(void);
 void execute_command(char *command);
-int command_path(const char *command, char *full_path, size_t size);
 void exec_command(char *command, char *args[]);
 void execute_cmd(char *command);
-void execute_cmd1(char *command); 
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
-
 
 
 
