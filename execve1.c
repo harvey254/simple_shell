@@ -32,7 +32,7 @@ void execute_cmd(char *command)
 	}
 	else
 	{
-		sprintf(cmd_path,"/%s", args[0]);
+		 strcpy(cmd_path, args[0]);
 	}
 	pid = fork();
 
