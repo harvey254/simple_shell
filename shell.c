@@ -20,7 +20,7 @@ int main(void)
 		if (command[strlen(command) - 1] == '\n')
 		{
 			command[strlen(command) - 1] = '\0';
-			execute_command(command);
+			execute_cmd(command);
 		}
 		}
 	}
@@ -31,7 +31,7 @@ int main(void)
 			if (command[strlen(command) - 1] == '\n')
 			{
 				command[strlen(command) - 1] = '\0';
-				execute_command(command);
+				execute_cmd(command);
 			}
 		}
 	}
