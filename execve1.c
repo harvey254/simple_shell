@@ -14,8 +14,6 @@ void execute_cmd(char *command)
 
 	if (command == NULL || strspn(command, "\t\n") == strlen(command))
 		return;
-	if (strcmp(command, "exit") == 0)
-		return;
 
 	if (strcmp(command, "env") == 0)
 	{
@@ -38,6 +36,8 @@ void execute_cmd(char *command)
 	{
 
 	parse_cmd(command, args);
+	if (strcmp(args[0], "exit") == 0)
+		exit(EXIT_SUCCESS);
 	if  (strchr(args[0], '/') == NULL)
 	{
 		while  (command_path(args[0], cmd_path, sizeof(cmd_path)) == -1)
