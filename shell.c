@@ -29,7 +29,7 @@ int main(void)
 			if (command[strlen(command) - 1] == '\n')
                         {
                                 command[strlen(command) - 1] = '\0';
-                                execute_cmd4(command);
+                                execute_command(command);
 			}
 		}
 	}

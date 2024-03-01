@@ -11,14 +11,15 @@ void execute_cmd(char *command)
 	char **env_var;
 	int status;
 	pid_t pid;
-	char *command_output;
 
 	if (command == NULL || strspn(command, "\t\n") == strlen(command))
 		return;
+	if (strcmp(command, "exit") == 0)
+		return;
+
 	if (strcmp(command, "env") == 0)
 	{
-		command_output = getenv("SHELL_COMMAND_OUTPUT");
-		if (command_output == NULL || strlen(command_output) == 0)
+		if (command == NULL || strlen(command) == 0)
 		{
 		env_var = environ;
 		while (*env_var != NULL)
@@ -29,7 +30,7 @@ void execute_cmd(char *command)
 		}
 		else
 		{
-			printf("%s\n",command_output);
+			printf("%s\n",command);
 		}
 		return;
 	}
