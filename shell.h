@@ -14,7 +14,7 @@
 
 
 int command_path(const char *command, char *path, size_t buffer_size);
-
+void execute_cmd4(char *command);
 extern char **environ;
 void myshell_prompt(void);
 int parse_cmd(char *cmd, char *args[]);

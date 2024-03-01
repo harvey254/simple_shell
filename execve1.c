@@ -11,19 +11,31 @@ void execute_cmd(char *command)
 	char **env_var;
 	int status;
 	pid_t pid;
+	char *command_output;
 
 	if (command == NULL || strspn(command, "\t\n") == strlen(command))
 		return;
 	if (strcmp(command, "env") == 0)
 	{
+		command_output = getenv("SHELL_COMMAND_OUTPUT");
+		if (command_output == NULL || strlen(command_output) == 0)
+		{
 		env_var = environ;
 		while (*env_var != NULL)
 		{
 			printf("%s\n", *env_var);
 			env_var++;
 		}
+		}
+		else
+		{
+			printf("%s\n",command_output);
+		}
 		return;
 	}
+	else
+	{
+
 	parse_cmd(command, args);
 	if  (strchr(args[0], '/') == NULL)
 	{
@@ -32,7 +44,7 @@ void execute_cmd(char *command)
 	}
 	else
 	{
-		 strcpy(cmd_path, args[0]);
+		 snprintf(cmd_path,sizeof(cmd_path),  "%s", args[0]);
 	}
 	pid = fork();
 
@@ -53,4 +65,6 @@ void execute_cmd(char *command)
 		waitpid(pid, &status, 0);
 	}
 	args[0] = strtok(NULL, " ");
+	
+	}
 }
