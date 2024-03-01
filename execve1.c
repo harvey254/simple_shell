@@ -36,8 +36,7 @@ void execute_cmd(char *command)
 	{
 
 	parse_cmd(command, args);
-	if (strcmp(args[0], "exit") == 0)
-		exit(EXIT_SUCCESS);
+
 	if  (strchr(args[0], '/') == NULL)
 	{
 		while  (command_path(args[0], cmd_path, sizeof(cmd_path)) == -1)

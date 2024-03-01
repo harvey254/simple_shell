@@ -29,6 +29,9 @@ int main(void)
 			if (command[strlen(command) - 1] == '\n')
                         {
                                 command[strlen(command) - 1] = '\0';
+				if (strcmp(command, "exit") == 0)
+					exit(EXIT_SUCCESS);
+
                                 execute_command(command);
 			}
 		}
