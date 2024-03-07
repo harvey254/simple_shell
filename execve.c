@@ -10,6 +10,11 @@ void execute_command(char *command)
 	char *token;
 	int status;
 	char **env_var;
+	char *path;
+        char *path_copy ;
+        char *dir;
+	char full_path[256];
+
 	pid_t pid;
 
 	if (command == NULL || strspn(command, " \t\n") == strlen(command))
@@ -42,11 +47,33 @@ void execute_command(char *command)
 	}
 	else if (pid == 0)
 	{
-		args[0] = command;
-		args[1] = NULL;
-		execve(command, args, environ);
-		perror("execve");
-		exit(EXIT_FAILURE);
+		path = getenv("PATH");
+		path_copy = strdup(path);
+		dir = strtok(path_copy, ":");
+		while (dir != NULL)
+		{
+			if (strchr(args[0], '/') == NULL)
+			{
+				snprintf(full_path, sizeof(full_path), "/bin/%s",  args[0]);
+				args[0] = command;
+				args[1] = NULL;
+				execve(full_path, args, environ);
+				dir = strtok(NULL, ":");
+				perror("execve");
+				exit(EXIT_FAILURE);
+
+			}
+			else
+			{
+				snprintf(full_path, sizeof(full_path), "%s", args[0]);
+				args[0] = command;
+				args[1] = NULL;
+				execve(full_path, args, environ);
+				dir = strtok(NULL, ":");
+				perror("execve");
+				exit(EXIT_FAILURE);
+			}
+		}
 	}
 	else
 	{
