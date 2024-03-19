@@ -20,15 +20,19 @@ int execBuiltInCommands(char **u_tokns, char *line)
 			{
 				case 0:
 					_handle_exit(u_tokns, line);
+					break;
 				case 1:
 					chdir(u_tokns[1]);
 					return (1);
+					break;
 				case 2:
 					_open_help();
 					return (1);
+					break;
 				case 3:
 					_print_env();
 					return (1);
+					break;
 				default:
 					break;
 			}

@@ -89,12 +89,17 @@ int exec(char *cname, char **opts)
 		case -1:
 			perror("fork failed");
 			return (-1);
+			break;
 		case 0:
 			execve(cname, opts, environ);
+			break;
 		default:
-			do {
+			do
+			{
 				waitpid(child, &status, WUNTRACED);
-			} while (WIFEXITED(status) == 0 && WIFSIGNALED(status) == 0);
+			} 
+			while (WIFEXITED(status) == 0 && WIFSIGNALED(status) == 0);
+			break;
 	}
 
 	return (0);
