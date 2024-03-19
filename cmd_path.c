@@ -17,9 +17,9 @@ int command_path(const char *command, char *path, size_t buffer_size)
 	while (token != NULL)
 	{
 		snprintf(path, buffer_size, "%s/%s", token, command);
-	}
-	if (access(path, F_OK) != -1)
+		if (access(path, F_OK) != -1)
 		return (0);
+	}
 	token = strtok_r(NULL, ":", &saveptr);
 	return (-1);
 }

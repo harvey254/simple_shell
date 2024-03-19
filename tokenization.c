@@ -5,17 +5,29 @@
  * @args: string of arguments
  * Return: number of tokenized arguments
  */
-int parse_cmd(char *cmd, char *args[])
+char **parse_cmd(char *cmd, char *delim, int len)
 {
-	char *token = strtok(cmd, " ");
 	int i = 0;
+	char *token = NULL;
+	char **tokens = NULL;
+	char *temp = NULL;
 
-	while (token != NULL)
+	tokens = malloc(sizeof(char *) * (len +1));
+	if (!tokens)
+		return (NULL);
+
+	cmd = rm_line(cmd);
+	temp = strdup(cmd);
+	token = strtok(temp, delim);
+
+	while (token)
 	{
-		args[i++] = token;
-		token = strtok(NULL, " ");
+		tokens[i] = strdup(token);
+		token = strtok(NULL, delim);
+		i++;
 	}
-	args[i] = NULL;
 
-	return (i);
+	tokens[i] = NULL;
+	free(temp);
+	return (tokens);
 }

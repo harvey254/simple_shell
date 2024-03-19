@@ -6,7 +6,7 @@
  */
 void execute_command(char *command)
 {
-	char *args[2];
+	char **args_ = NULL;
 	char *token;
 	int status;
 	char **env_var;
@@ -25,9 +25,25 @@ void execute_command(char *command)
 		status = 0;
 		if (token != NULL)
 		{
-			status = atoi(token);
+			free(command);
+			free(token);
+			exit(0);
 		}
-		exit(status);
+		status = atoi(token);
+		if (status != 0)
+		{
+			free(command);
+			free(token);
+			exit (status);
+		}
+		else
+		{
+
+		exit(2);
+		}
+		free(command);
+		free(token);
+		exit(EXIT_SUCCESS);
 	}
 	if (strcmp(command, "env") == 0)
 	{
@@ -39,7 +55,8 @@ void execute_command(char *command)
 		}
 		return;
 	}
-	parse_cmd(command, args);
+	args_ = parse_cmd(command, " \t", sizeof(command));
+
 	pid = fork();
 	if (pid == -1)
 	{
@@ -52,12 +69,12 @@ void execute_command(char *command)
 		dir = strtok(path_copy, ":");
 		while (dir != NULL)
 		{
-			if (strchr(args[0], '/') == NULL)
+			if (strchr(args_[0], '/') == NULL)
 			{
-				snprintf(full_path, sizeof(full_path), "/bin/%s",  args[0]);
-				args[0] = command;
-				args[1] = NULL;
-				execve(full_path, args, environ);
+				snprintf(full_path, sizeof(full_path), "/bin/%s",  args_[0]);
+				args_[0] = command;
+				args_[1] = NULL;
+				execve(full_path, args_, environ);
 				dir = strtok(NULL, ":");
 				perror("execve");
 				exit(EXIT_FAILURE);
@@ -65,10 +82,10 @@ void execute_command(char *command)
 			}
 			else
 			{
-				snprintf(full_path, sizeof(full_path), "%s", args[0]);
-				args[0] = command;
-				args[1] = NULL;
-				execve(full_path, args, environ);
+				snprintf(full_path, sizeof(full_path), "%s", args_[0]);
+				args_[0] = command;
+				args_[1] = NULL;
+				execve(full_path, args_, environ);
 				dir = strtok(NULL, ":");
 				perror("execve");
 				exit(EXIT_FAILURE);

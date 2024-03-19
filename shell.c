@@ -10,6 +10,7 @@ int main(void)
 
 	if (isatty(fileno(stdin)))
 	{
+		signal(SIGINT, sig_han);
 		while (1)
 		{
 			printf("$ ");
