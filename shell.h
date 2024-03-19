@@ -1,36 +1,39 @@
-#ifndef SHELL_H
-#define SHELL_H
-#include <string.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
+#ifndef _SHELL_
+#define _SHELL_
+
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <sys/wait.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <signal.h>
+#include <stdio.h>
 
-#define MAX_ARGS 64
-#define MAX_PATH_LENGTH 1024
-#define MAX_COMMAND_LENGTH 256
-char *_getenv(const char *identity);
-char *rm_line(char *str);
-void sig_han(int signal_id);
-int command_path(const char *command, char *path, size_t buffer_size);
-void execute_cmd4(char *command);
 extern char **environ;
-char **parse_cmd(char *cmd, char *delim, int len);
-void myshell_prompt(void);
-int exit_shell(char *cmd);
-void print_env(void);
-int check_env(char *cmd);
-char* custom_getline(void);
-void execute_command(char *command);
+
+char *_strcat(char *dest, char *src);
+int _strlen(const char *s);
+int _strcmp(char *s1, char *s2);
+int _strncmp(const char *s1, const char *s2, size_t len);
+char *_strdup(char *str);
+int _atoi(char *s);
+int _putchar(char c);
+void _puts(char *str);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b);
-ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
-
-
-
-
-
+int count_input(char *str);
+int count_delims(char *str, char *del);
+char *remove_new_line(char *str);
+void signal_handler(int sig_id);
+void _open_help(void);
+void _print_env(void);
+void _handle_exit(char **u_tokns, char *line);
+int execBuiltInCommands(char **u_tokns, char *line);
+void frees_get_env(char *env_path);
+void frees_tokens(char **tokns);
+int exec(char *cname, char **opts);
+char *_getenv(const char *name);
+char **tokenize(char *str, char *del, int len);
+char *find(char *cname);
 
 #endif

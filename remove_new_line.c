@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
-  * rm_line - Removes a new line character from string
+  * remove_new_line - Removes a new line character from string
   * @str: The string
   *
   * Return: The string without a new line character
   */
-char *rm_line(char *str)
+char *remove_new_line(char *str)
 {
 	int i = 0;
 
